@@ -1,0 +1,7 @@
+//重写element plus 全局主题颜色
+@forward "element-plus/theme-chalk/src/common/var.scss" with ($colors: ("warning":("base": #FE9A2E), "primary": ("base": #5882FA),"info": ("base": #00BCD4), "error": ("base": #FE2E2E), "success": ("base":#58FAAC) , "danger": ("base": #FE2E2E)));
+@use "element-plus/theme-chalk/src/index.scss" as *;
+
+
+// @forward "element-plus/theme-chalk/dark/css-vars.css" with ($colors: ("warning":("base": #FE9A2E), "primary": ("base": #5882FA),"info": ("base": #00BCD4), "error": ("base": #FE2E2E), "success": ("base":#58FAAC) , "danger": ("base": #FE2E2E)));
+// @use "element-plus/theme-chalk/dark/css-vars.css" as *;
