@@ -14,6 +14,18 @@ const router = createRouter({
       path: "/login",
       name: "登录",
       component: () => import('@/pages/Auth/Login.vue'),
+    },{
+      path: "/register",
+      name: "注册",
+      component: () => import('@/pages/Auth/Register.vue')
+    },{
+      path: "/dashboard",
+      name: "导航页",
+      component: () => import('@/pages/Dashboard/Dashboard.vue')
+    },{
+      path: "/auth",
+      name: "auth页面",
+      component: () => import("@/pages/Auth/Auth.vue")
     }
   ]
 })

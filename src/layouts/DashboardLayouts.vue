@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboardLayouts"></div>
+  <div class="dashboard-layouts"></div>
 </template>
 
 <script setup>

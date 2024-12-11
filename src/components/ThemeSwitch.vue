@@ -1,7 +1,7 @@
 <template>
   <div class="theme-switch">
     <el-switch 
-      class="el-dark-switch" 
+      class="el-theme-switch" 
       v-model="isDark" 
       @change="toggleTheme" 
       :active-icon="MoonIcon"
@@ -21,8 +21,8 @@ const MoonIcon = Moon;
 
 
 <style>
-.el-dark-switch {
-  --el-switch-off-color: #D8D8DF;
+.el-theme-switch {
+  --el-switch-off-color: #A4A4A4;
   --el-switch-on-color: #585858;
 }
 </style>
