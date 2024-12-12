@@ -6,15 +6,15 @@
     <div class="title-wrapper">
       <h2>CHIIIPLOW-CLOUDDRIVE</h2>
     </div>
-    <el-form class="el-login" label-position="top" @keyup.enter="login">
+    <el-form class="el-login" label-position="top" @keyup.enter="login" :model="loginForm" key="login">
       <el-form-item label="账号" prop="username">
-        <el-input clearable placeholder="请输入账号" :prefix-icon="UserIcon"></el-input>
+        <el-input clearable placeholder="请输入账号" :prefix-icon="UserIcon" v-model.trim="loginForm.username"></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="password">
-        <el-input clearable placeholder="请输入密码" type="password" :prefix-icon="LockIcon"></el-input>
+        <el-input clearable placeholder="请输入密码" type="password" :prefix-icon="LockIcon" v-model.trim="loginForm.password"></el-input>
       </el-form-item>
       <el-form-item class="main-captcha" label="验证码" prop="captcha">
-        <el-input class="captcha" clearable placeholder="请输入验证码" :prefix-icon="FolderCheckedIcon"></el-input>
+        <el-input class="captcha" clearable placeholder="请输入验证码" :prefix-icon="FolderCheckedIcon" v-model.trim="loginForm.captcha"></el-input>
       </el-form-item>
       <el-form-item class="login-button">
         <el-button type="primary" @click="login">登录</el-button>
@@ -32,9 +32,12 @@ const { proxy } = getCurrentInstance()
 const UserIcon = User
 const LockIcon = Lock
 const FolderCheckedIcon = FolderChecked
+const loginForm = ref({})
 const login = () => {
-  console.log("登录")
-  proxy.MessageUtils.success("登录成功！")
+  let params = {}
+  Object.assign(params, loginForm.value)
+  console.log(params)
+  // proxy.MessageUtils.success("登录成功！")
 }
 const switchForm = () => {
   toggleAuth();
@@ -43,9 +46,9 @@ const switchForm = () => {
 
 <style lang="scss">
 .login-form {
-  border: 0.5px solid #6C6E72;
-  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.2);
-  border-radius: 7px;
+  border: 0.05px solid #6C6E72;
+  // box-shadow: 0 2px 7px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
   width: 500px;
   padding: 10px 15px;
   .title-wrapper {

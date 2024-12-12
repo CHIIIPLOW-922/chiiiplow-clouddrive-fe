@@ -7,8 +7,8 @@
 
 <script setup>
 import AuthLayouts from '@/layouts/AuthLayouts.vue';
-import LoginForm from '@/components/LoginForm.vue';
-import RegisterForm from '@/components/RegisterForm.vue';
+import LoginForm from '@/components/Auth/LoginForm.vue';
+import RegisterForm from '@/components/Auth/RegisterForm.vue';
 import { authState } from '@/store/authState';
 
 </script>

@@ -11,12 +11,14 @@
         label-position="top"
         label-width="100px"
         @keyup.enter="register"
+        :model="registerForm"
       >
         <el-form-item label="账号" prop="username">
           <el-input
             clearable
             placeholder="请输入账号"
             :prefix-icon="UserIcon"
+            v-model.trim="registerForm.username"
           ></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
@@ -25,6 +27,7 @@
             placeholder="请输入密码"
             type="password"
             :prefix-icon="LockIcon"
+            v-model.trim="registerForm.password"
           ></el-input>
         </el-form-item>
         <el-form-item label="重新确认密码" prop="repassword">
@@ -33,6 +36,7 @@
             placeholder="请确认密码"
             type="password"
             :prefix-icon="LockIcon"
+            v-model.trim="registerForm.repassword"
           ></el-input>
         </el-form-item>
         <el-form-item label="注册邮箱" prop="email">
@@ -40,6 +44,7 @@
             clearable
             placeholder="请输入注册邮箱"
             :prefix-icon="BoxIcon"
+            v-model.trim="registerForm.email"
           ></el-input>
         </el-form-item>
         <el-form-item label="邮箱验证码" prop="emailValidCode" class="main-emailCode">
@@ -49,6 +54,7 @@
             placeholder="请输入邮箱验证码"
             type="email"
             :prefix-icon="ScaleToOriginalIcon"
+            v-model.trim="registerForm.emailCode"
           ></el-input>
           <!-- <el-button @click="sendEmailValidCode" :disabled="!registerform.email || emailCodeFlag">{{
             sendEmailStatus
@@ -65,16 +71,18 @@
 <script setup>
 import { Box, Lock, ScaleToOriginal, User } from '@element-plus/icons-vue'
 import { toggleAuth } from '@/store/authState';
-import { getCurrentInstance } from 'vue';
+import { getCurrentInstance, ref } from 'vue';
 const { proxy } = getCurrentInstance()
 
 const BoxIcon = Box
 const LockIcon = Lock
 const ScaleToOriginalIcon = ScaleToOriginal
 const UserIcon = User
+const registerForm = ref({})
 const register = ()=>{
-  proxy.MessageUtils.success("注册成功！")
-  console.log("注册")
+  let params = {}
+  Object.assign(params, registerForm.value)
+  console.log(params)
 }
 const switchForm = ()=>{
   toggleAuth();
@@ -83,9 +91,9 @@ const switchForm = ()=>{
 
 <style lang="scss">
 .register-form{
-  border: 0.5px solid #6C6E72;
-  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.2);
-  border-radius: 7px;
+  border: 0.05px solid #6C6E72;
+  // box-shadow: 0 2px 7px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
   width: 500px;
   padding: 10px 15px;
   .title-wrapper {
