@@ -79,10 +79,12 @@ const LockIcon = Lock
 const ScaleToOriginalIcon = ScaleToOriginal
 const UserIcon = User
 const registerForm = ref({})
+
 const register = ()=>{
   let params = {}
   Object.assign(params, registerForm.value)
   console.log(params)
+  proxy.MessageUtils.warning("注册失败")
 }
 const switchForm = ()=>{
   toggleAuth();

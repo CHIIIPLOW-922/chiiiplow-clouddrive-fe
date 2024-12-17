@@ -11,6 +11,10 @@ const router = createRouter({
       path: "/auth",
       name: "登录及注册",
       component: () => import("@/pages/Auth/Auth.vue")
+    },{
+      path: "/settingDialog",
+      name: "设置页",
+      component: ()=> import('@/components/Dashboard/Header/HeaderComponents/SettingDialog.vue')
     }
   ]
 })

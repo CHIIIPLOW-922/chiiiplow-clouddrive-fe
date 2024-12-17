@@ -1,30 +1,32 @@
 import { ElMessage } from 'element-plus';
 
-const messageQueue = []
-let showingMessageFlag = false;
-let currentMessageInstance = null;
+// const messageQueue = []
+// let showingMessageFlag = false;
+// let currentMessageInstance = null;
 
 const showMessage = (messageOptions) => {
-    if (showingMessageFlag) {
-        messageQueue.push(messageOptions);
-        if (currentMessageInstance) {
-            currentMessageInstance.close();
-        }
-        return;
-    }
-    showingMessageFlag = true;
+    // if (showingMessageFlag) {
+    //     messageQueue.push(messageOptions);
+    //     if (currentMessageInstance) {
+    //         currentMessageInstance.close();
+    //     }
+    //     return;
+    // }
+    // showingMessageFlag = true;
     currentMessageInstance = ElMessage({
         duration:3000,
+        plain:true,
+        grouping: true,
         ...messageOptions,
-        onClose: () => {
-            showingMessageFlag = false
-            currentMessageInstance = null;
-            if (messageQueue.length > 0) {
-                const nextMessage = messageQueue.shift();
-                showMessage(nextMessage);
-            }
+        // onClose: () => {
+        //     showingMessageFlag = false
+        //     currentMessageInstance = null;
+        //     if (messageQueue.length > 0) {
+        //         const nextMessage = messageQueue.shift();
+        //         showMessage(nextMessage);
+        //     }
 
-        }
+        // }
     })
 }
 

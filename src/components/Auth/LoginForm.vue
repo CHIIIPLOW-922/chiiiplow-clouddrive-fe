@@ -37,7 +37,7 @@ const login = () => {
   let params = {}
   Object.assign(params, loginForm.value)
   console.log(params)
-  // proxy.MessageUtils.success("登录成功！")
+  proxy.MessageUtils.success("登录成功！")
 }
 const switchForm = () => {
   toggleAuth();

@@ -12,11 +12,41 @@
 </template>
 
 <script setup>
-import { useTheme } from '@/theme/useTheme';
 import { Sunny, Moon } from '@element-plus/icons-vue';
-const { isDark, toggleTheme } = useTheme();
+import { ref, onMounted, watch } from 'vue';
 const SunnyIcon = Sunny;
 const MoonIcon = Moon;
+const isDark = ref(false);
+
+const toggleTheme = () => {
+  if (isDark.value) {
+    changeTheme('dark')
+  } else {
+    changeTheme('light')
+  }
+}
+
+const changeTheme = (theme) => {
+
+    const html = document.documentElement;
+    if (theme == "dark") {
+      html.classList.add('dark'); // 添加暗黑模式类
+    } else {
+      html.classList.remove('dark'); // 移除暗黑模式类
+    }
+}
+
+// 初始化主题（判断本地存储）
+onMounted(() => {
+  const savedTheme = localStorage.getItem('theme') || 'light'
+  isDark.value = savedTheme === 'dark'
+  changeTheme(savedTheme)
+})
+
+// 监听主题变化，保存到本地存储
+watch(isDark, (newValue) => {
+  localStorage.setItem('theme', newValue ? 'dark' : 'light')
+})
 </script>
 
 

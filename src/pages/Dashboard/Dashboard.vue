@@ -1,14 +1,13 @@
 <template>
-  <div class="dashboard">
-    
-  </div>
+  <DashboardLayouts>
+  </DashboardLayouts>
 </template>
 
 <script setup>
-
+import DashboardLayouts from '@/layouts/DashboardLayouts.vue';
 </script>
 
 
-<style>
+<style lang="scss">
 
 </style>
