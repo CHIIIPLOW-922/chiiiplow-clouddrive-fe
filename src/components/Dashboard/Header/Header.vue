@@ -33,7 +33,8 @@ const handleOpenDialog = () => {
 .header {
   border: 0.05px dotted #6C6E72;
   grid-area: header;
-  // display: flex;
+  display: flex;
+  align-items: center;
 
   .logo-wrapper {}
 
@@ -49,18 +50,19 @@ const handleOpenDialog = () => {
 
   .header-search {
     position: absolute;
-    top: 22px;
+    // top: 25px;
     left: 300px;
   }
+
   .header-avatar {
     position: absolute;
-    top: 18px;
+    // top: 18px;
     right: 80px;
   }
 
   .setting-item {
     position: absolute;
-    top: 22px;
+    // top: 22px;
     right: 25px;
   }
 }
