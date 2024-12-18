@@ -4,6 +4,11 @@ const router = createRouter({
   mode: "hash",
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path:"/",
+      name:"默认",
+      redirect: "/auth"
+    },
     {  path: "/dashboard",
       name: "导航页",
       component: () => import('@/pages/Dashboard/Dashboard.vue')

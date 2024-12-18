@@ -1,43 +1,61 @@
 <template>
   <div class="header">
-
-    <div class="user-image">头像</div>
-    <!-- <div class="theme-switch">
-        <ThemeSwitch />
-      </div> -->
+    <div class="logo-wrapper">
+      <LogoWrapper />
+    </div>
+    <div class="header-search">
+      <SearchInput />
+    </div>
+    <div class="header-avatar">
+      <Avatar />
+    </div>
     <div class="setting-item">
       <SettingButton @open-dialog="handleOpenDialog" />
     </div>
-    <SettingDialog v-model="isDialogVisible"  />
+    <SettingDialog v-model="isDialogVisible" />
   </div>
 </template>
 
 <script setup>
-import ThemeSwitch from '@/components/ThemeSwitch.vue';
 import SettingButton from '@/components/Dashboard/Header/HeaderComponents/SettingButton.vue';
+import Avatar from '@/components/Dashboard/Header/HeaderComponents/Avatar.vue';
 import SettingDialog from '@/components/Dashboard/Header/HeaderComponents/SettingDialog.vue';
+import SearchInput from '@/components/Dashboard/Header/HeaderComponents/SearchInput.vue';
+import LogoWrapper from '@/components/LogoWrapper.vue'
 import { ref } from 'vue';
 const isDialogVisible = ref(false);
-const handleOpenDialog = ()=>{
+const handleOpenDialog = () => {
   isDialogVisible.value = true;
 }
 </script>
 
 <style lang="scss">
 .header {
-  border: 0.05px solid #6C6E72;
+  border: 0.05px dotted #6C6E72;
   grid-area: header;
-  display: flex;
+  // display: flex;
 
+  .logo-wrapper {}
 
-  .user-image {
-    width: 40px;
-    height: 40px;
-    border: 1px solid black;
-    border-radius: 50%;
+  // .user-image {
+  //   width: 40px;
+  //   height: 40px;
+  //   border: 1px solid black;
+  //   border-radius: 50%;
+  //   position: absolute;
+  //   top: 12px;
+  //   left: 15px;
+  // }
+
+  .header-search {
     position: absolute;
-    top: 12px;
-    left: 15px;
+    top: 22px;
+    left: 300px;
+  }
+  .header-avatar {
+    position: absolute;
+    top: 18px;
+    right: 80px;
   }
 
   .setting-item {
@@ -45,11 +63,5 @@ const handleOpenDialog = ()=>{
     top: 22px;
     right: 25px;
   }
-
-  // .theme-switch {
-  //   position: absolute;
-  //   top: 12px;
-  //   right: 35px;
-  // }
 }
 </style>
