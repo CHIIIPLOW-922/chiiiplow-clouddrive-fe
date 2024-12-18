@@ -12,7 +12,8 @@
 .global-logo {
   width: 250px;
   height: 80px;
-  border: 0.05px dotted #6C6E72;
+  // border-left: 0.05px dotted #6C6E72;
+  border-right: 0.05px dotted #6C6E72;
     // justify-content: center;
     // align-items: center;
     .header-logo{

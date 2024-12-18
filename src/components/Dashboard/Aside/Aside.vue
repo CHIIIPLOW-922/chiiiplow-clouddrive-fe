@@ -23,7 +23,7 @@ import Progress from '@/components/Dashboard/Aside/AsideComponents/Progress.vue'
   height: 100%;
 
   .aside-menu {
-    overflow-y: auto;
+    // overflow-y: auto;
     height: 100%;
   }
   .aside-progress {

@@ -31,7 +31,8 @@ const handleOpenDialog = () => {
 
 <style lang="scss">
 .header {
-  border: 0.05px dotted #6C6E72;
+  border-bottom: 0.05px dotted #6C6E72;
+  // border-right: 0.05px dotted #6C6E72;
   grid-area: header;
   display: flex;
   align-items: center;

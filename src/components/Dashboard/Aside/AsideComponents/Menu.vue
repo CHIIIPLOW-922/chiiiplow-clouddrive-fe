@@ -61,11 +61,14 @@ const menuList = [
 <style lang="scss">
 .menu {
     height: 100%;
+    overflow-y: auto;
     padding-top: 15px;
     .menu-item{ 
         display: flex;
+        border-top:0.005px dotted lightblue;
+        border-bottom:0.005px dotted lightblue;
         justify-content: center;
-        // padding-right: 50px;
+        margin-bottom: 20px;
         .item-icon{
             margin-right: 30px;
         }
