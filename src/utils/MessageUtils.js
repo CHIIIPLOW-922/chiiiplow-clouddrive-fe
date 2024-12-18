@@ -2,7 +2,7 @@ import { ElMessage } from 'element-plus';
 
 // const messageQueue = []
 // let showingMessageFlag = false;
-// let currentMessageInstance = null;
+let currentMessageInstance = null;
 
 const showMessage = (messageOptions) => {
     // if (showingMessageFlag) {

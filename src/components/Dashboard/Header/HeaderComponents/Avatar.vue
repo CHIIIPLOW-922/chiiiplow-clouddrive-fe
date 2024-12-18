@@ -7,7 +7,7 @@
 
 <style lang="scss">
 .user-avatar{
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
 }
 </style>

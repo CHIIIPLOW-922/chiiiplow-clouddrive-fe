@@ -68,12 +68,13 @@ const menuList = [
         border-top:0.005px dotted lightblue;
         border-bottom:0.005px dotted lightblue;
         justify-content: center;
+        
         margin-bottom: 20px;
         .item-icon{
             margin-right: 30px;
         }
         .item-name {
-
+            padding-right: 20px;
         }
     }
 }

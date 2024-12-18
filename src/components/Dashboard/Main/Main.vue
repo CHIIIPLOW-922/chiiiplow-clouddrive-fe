@@ -1,11 +1,11 @@
 <template>
   <div class="main">
-    main
-    <slot></slot>
+    <FileList></FileList>
   </div>
 </template>
 
 <script setup>
+import FileList from '@/components/Dashboard/Main/MainComponents/FileList.vue';
 </script>
 
 <style lang="scss">
