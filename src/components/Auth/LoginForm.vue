@@ -11,7 +11,7 @@
         <el-input clearable placeholder="请输入账号" :prefix-icon="UserIcon" v-model.trim="loginForm.username"></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="password">
-        <el-input clearable placeholder="请输入密码" type="password" :prefix-icon="LockIcon" v-model.trim="loginForm.password"></el-input>
+        <el-input clearable placeholder="请输入密码" type="password" :prefix-icon="LockIcon" v-model.trim="loginForm.password" show-password></el-input>
       </el-form-item>
       <el-form-item class="main-captcha" label="验证码" prop="captcha">
         <el-input class="captcha" clearable placeholder="请输入验证码" :prefix-icon="FolderCheckedIcon" v-model.trim="loginForm.captcha"></el-input>
