@@ -1,5 +1,5 @@
 <template>
-  <el-table class="file-list" :data="tableData" @selection-change="selectValueChange" stripe @row-click="click">
+  <el-table class="file-list" :data="tableData" @selection-change="selectValueChange" stripe @row-click="click" height="837px">
     <el-table-column type="selection" />
     <el-table-column prop="name" label="文件名">
       <template v-slot="scope">

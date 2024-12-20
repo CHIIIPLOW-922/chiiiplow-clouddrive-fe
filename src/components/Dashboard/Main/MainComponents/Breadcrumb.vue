@@ -1,5 +1,5 @@
 <template>
-  <el-breadcrumb class="breadcrumb">
+  <el-breadcrumb class="breadcrumb" :separator-icon="ArrowRight">
     <el-breadcrumb-item :to="{ path: '/' }">homepage</el-breadcrumb-item>
     <el-breadcrumb-item
       ><a href="/">promotion management</a></el-breadcrumb-item
@@ -10,6 +10,7 @@
 </template>
 
 <script setup>
+import { ArrowRight } from '@element-plus/icons-vue'
 </script>
 
 <style lang="scss">
