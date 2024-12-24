@@ -79,7 +79,7 @@ const tableData = [
 
 <style lang="scss">
 .file-list {
-  border-top: 0.05px dotted lightgray;
+  border-top: 1px solid var(--el-border-color);
   .file-name {
     display: flex;
     // justify-content: center;

@@ -1,7 +1,9 @@
 <template>
   <div class="global-logo">
     <img src="@/assets/image/logo.png" class="header-logo" />
-      <h3 class="logo-title">CHIIIPLOW-CLOUDDRIVE</h3>
+      <div class="logo-title">
+        <el-text size="large" tag="b">CHIIIPLOW-CLOUDDRIVE</el-text>
+      </div>
   </div>
 </template>
 
@@ -13,7 +15,7 @@
   width: 250px;
   height: 80px;
   // border-left: 0.05px dotted #6C6E72;
-  border-right: 0.05px dotted #6C6E72;
+  border-right: 1px solid var(--el-border-color);
     // justify-content: center;
     // align-items: center;
     .header-logo{
@@ -26,8 +28,12 @@
     }
     .logo-title {
       position: relative;
-      left: 20px;
-      bottom: 10px;
+      display: flex;
+      justify-content: center;
+      margin-top: 5px;
+      align-items: center;
+      // left: 20px;
+      // bottom: 1px;
     }
 }
 </style>

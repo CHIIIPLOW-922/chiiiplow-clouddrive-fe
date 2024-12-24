@@ -65,8 +65,8 @@ const menuList = [
     padding-top: 15px;
     .menu-item{ 
         display: flex;
-        border-top:0.005px dotted lightblue;
-        border-bottom:0.005px dotted lightblue;
+        border-top: 1px solid var(--el-border-color);
+        border-bottom: 1px solid var(--el-border-color);
         justify-content: center;
         
         margin-bottom: 20px;

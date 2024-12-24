@@ -31,12 +31,12 @@ const handleOpenDialog = () => {
 
 <style lang="scss">
 .header {
-  border-bottom: 0.05px dotted #6C6E72;
+  border-bottom: 1px solid var(--el-border-color);
   // border-right: 0.05px dotted #6C6E72;
   grid-area: header;
   display: flex;
   align-items: center;
-
+  // width: 100%;
   .logo-wrapper {}
 
   // .user-image {
@@ -50,21 +50,22 @@ const handleOpenDialog = () => {
   // }
 
   .header-search {
-    position: absolute;
+    position: relative;
     // top: 25px;
-    left: 300px;
+    left: 50px;
   }
 
   .header-avatar {
-    position: absolute;
+    position: relative;
     // top: 18px;
-    right: 80px;
+    // right: 80px;
+    left: 1245px;
   }
 
   .setting-item {
-    position: absolute;
+    position: relative;
     // top: 22px;
-    right: 25px;
+    left: 1265px;
   }
 }
 </style>

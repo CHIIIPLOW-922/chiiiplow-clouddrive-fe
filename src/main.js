@@ -13,7 +13,7 @@ import '@/assets/cust-elementplus.scss'
 import '@/assets/icon/iconfont.css'
 
 import MessageUtils from '@/utils/MessageUtils'
-// import RequestUtils from '@/utils/RequestUtils'
+import RequestUtils from '@/utils/RequestUtils'
 
 import * as Icons from '@element-plus/icons-vue'
 
@@ -36,7 +36,7 @@ app.use(pinia)
 
 
 app.config.globalProperties.MessageUtils = MessageUtils
-// app.config.globalProperties.$http = RequestUtils
+app.config.globalProperties.$http = RequestUtils
 
 
 
