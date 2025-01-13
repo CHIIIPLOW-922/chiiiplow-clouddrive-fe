@@ -1,13 +1,12 @@
 import axios from 'axios';
 
 import MessageUtils from '@/utils/MessageUtils';
-// import { generateUniqueId } from '@/utils/UUID';
 import { ElLoading } from 'element-plus';
 import router from '@/router';
+import Cookies from 'js-cookie'
 
 
 let loading = null
-// const uniqueId = generateUniqueId()
 const contentTypeForm = 'application/x-www-form-urlencoded;charset=UTF-8'
 const contentTypeJson = 'application/json'
 const responseTypeJson = "json"
@@ -38,25 +37,39 @@ service.interceptors.request.use(
         return Promise.reject("接口请求失败，请检查网络")
     }
 )
+
 service.interceptors.response.use(
     (response) => {
         const { showLoading = true, errorCallback } = response.config;
         if (showLoading && loading) {
             loading.close()
         }
-        const responseData = response.data;
-        if (responseData.code == 200) {
-            return responseData;
-        } else if (responseData.code == 555) {
-            console.log(1111)
-            localStorage.removeItem("jwt")
-            // router.push("/login?redirectUrl=" + encodeURI(router.currentRoute.value.path));
-            return Promise.reject({ showError: false, msg: "用户验证错误" });
+        let accessToken = response.headers.getAuthorization()
+        if (accessToken) {
+            localStorage.setItem("access_token", accessToken);
+            
+            // Cookies.set("access_token", `Bearer ${accessToken}`);
+            // Cookies.set("refres_token", refreshToken);
+        }
+        const data = response.data;
+        if (data.code == 200) {
+            if (data.msg) {
+                MessageUtils.success(data.msg);
+            }
+            return data;
         } else {
             if (errorCallback) {
-                errorCallback(responseData.msg);
+                errorCallback(data.msg);
             }
-            return Promise.reject({ showError: true, msg: responseData.msg });
+            if (data.code == 401) {
+                let token = HttpClient.post("/user/refresh", {}, {});
+                console.log(token)
+            }
+            if (data.code == 555) {
+                router.push("/auth?redirectUrl=" + encodeURI(router.currentRoute.value.path));
+            }
+            MessageUtils.error(data.msg);
+            return Promise.reject({ showError: true, msg: data.msg });
         }
     },
     (error) => {
@@ -64,12 +77,16 @@ service.interceptors.response.use(
             loading.close();
         }
         MessageUtils.error("网络异常")
-        return Promise.reject({ showError: true, msg: "网络异常" })
+        return Promise.reject({ showError: false, msg: "网络异常" })
     }
 );
 
 class HttpClient {
     static post(url, params, config = {}) {
+        return service.post(url, this._parseParams(params), this._getRequestConfig(config, url));
+    }
+
+    static postForm(url, params, config = { dataType: 'form' }) {
         return service.post(url, this._parseParams(params), this._getRequestConfig(config, url));
     }
 
@@ -86,14 +103,19 @@ class HttpClient {
     }
 
     static _getRequestConfig(config, url) {
-        const { dataType, showLoading = true, responseType = responseTypeJson } = config;
-        let contentType = contentTypeForm;
-        if (dataType != null && dataType == 'json') {
-            contentType = contentTypeJson;
+        const { dataType, showLoading, responseType = responseTypeJson } = config;
+        let contentType = contentTypeJson;
+        if (dataType != null && dataType == 'form') {
+            contentType = contentTypeForm;
         }
         let headers = {
             'Content-Type': contentType,
             'X-Requested-With': 'XMLHttpRequest',
+        }
+
+        const token = localStorage.getItem('access_token')
+        if (token) {
+            headers['Authorization'] = `Bearer ${token}`
         }
         // if (!urlFilter.includes(url)) {
         //     const token = localStorage.getItem("jwt")

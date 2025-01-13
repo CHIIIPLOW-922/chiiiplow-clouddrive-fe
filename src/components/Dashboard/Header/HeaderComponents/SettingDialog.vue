@@ -8,7 +8,9 @@
                 <el-form-item label="主题模式">
                     <ThemeSwitch />
                 </el-form-item>
-                <el-form-item></el-form-item>
+                <el-form-item label="登出">
+                    <LogoutButton />
+                </el-form-item>
             </el-form>
 
         </div>
@@ -18,6 +20,7 @@
 <script setup>
 import { defineProps, ref, defineModel } from 'vue';
 import ThemeSwitch from '@/components/ThemeSwitch.vue';
+import LogoutButton from '@/components/Dashboard/Header/HeaderComponents/LogoutButton.vue';
 const flag = defineModel('visible', { type: Boolean, default: false });
 
 </script>

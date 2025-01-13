@@ -23,16 +23,14 @@
       </el-form-item>
       <el-form-item label="邮箱验证码" prop="emailValidCode" class="main-emailCode">
         <el-input class="emailCode" clearable placeholder="请输入邮箱验证码" type="email" :prefix-icon="ScaleToOriginalIcon"
-          v-model.trim="registerForm.emailCode">
+          v-model.trim="registerForm.emailValidCode">
           <template #append>
-            <el-button class="email-button" @click="sendEmail" :icon="Message" :disabled="!registerForm.email || emailCodeFlag">
+            <el-button class="email-button" @click="sendEmail" :icon="Message"
+              :disabled="!registerForm.email || emailCodeFlag">
               {{ sendEmailStatus }}
             </el-button>
           </template>
         </el-input>
-        <!-- <el-button @click="sendEmailValidCode" :disabled="!registerform.email || emailCodeFlag">{{
-            sendEmailStatus
-          }}</el-button> -->
       </el-form-item>
       <el-form-item class="register-button">
         <el-button type="primary" @click="register">注册</el-button>
@@ -44,6 +42,7 @@
 
 <script setup>
 import { Box, Lock, ScaleToOriginal, User, Message } from '@element-plus/icons-vue'
+import userAPI from '@/api/user';
 import { toggleAuth } from '@/store/authState';
 import { getCurrentInstance, ref } from 'vue';
 const { proxy } = getCurrentInstance()
@@ -55,16 +54,17 @@ const ScaleToOriginalIcon = ScaleToOriginal
 const UserIcon = User
 const registerForm = ref({})
 
-const sendEmail = () => {
+const sendEmail = async () => {
   let count = 60
   let timer
   // 开始倒计时
   if (emailCodeFlag.value) return
-  // if (response?.code != 200) return
-  // proxy.MessageUtils.success(response.msg)
+  let params = {
+    email: registerForm.value.email
+  }
+  const response = await userAPI.sendEmailCode(params);
   emailCodeFlag.value = true
   sendEmailStatus.value = count + '秒后重试'
-
   timer = setInterval(() => {
     count--
     sendEmailStatus.value = count + '秒后重试'
@@ -76,49 +76,59 @@ const sendEmail = () => {
   }, 1000)
 }
 
-const register = ()=>{
+const register = async () => {
   let params = {}
   Object.assign(params, registerForm.value)
-  console.log(params)
-  proxy.MessageUtils.warning("注册失败")
+  const response = await userAPI.register(params);
+  registerForm.value = {}
+  emailCodeFlag.value = false
 }
-const switchForm = ()=>{
+const switchForm = () => {
   toggleAuth();
 }
 </script>
 
 <style lang="scss">
-.register-form{
+.register-form {
   border: 1px solid var(--el-border-color);
-  // box-shadow: 0 2px 7px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 10px var(--el-border-color);
   border-radius: 8px;
   width: 500px;
   padding: 10px 15px;
+
   .title-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
+
     .text-item {
       font-size: 20px;
     }
   }
+
   .logo-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 70px;
+
     .register-logo {
+      // border: 1px solid var(--el-border-color);
+      // box-shadow: 0 2px 10px var(--el-border-color);
       width: 60px;
       height: 60px;
       z-index: 99;
     }
   }
-  .el-register{
+
+  .el-register {
     padding: 0 10px;
+
     .el-form-item {
       margin: 15px 0;
     }
-    .email-button{
+
+    .email-button {
       display: flex;
       align-items: center;
     }

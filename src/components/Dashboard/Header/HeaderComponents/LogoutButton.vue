@@ -1,5 +1,5 @@
 <template>
-    <el-button class="logout-button" circle :icon="SwitchButtonIcon" />
+    <el-button class="logout-button" circle :icon="SwitchButtonIcon" type="danger" plain />
 </template>
     
 
