@@ -3,7 +3,6 @@ import axios from 'axios';
 import MessageUtils from '@/utils/MessageUtils';
 import { ElLoading } from 'element-plus';
 import router from '@/router';
-import Cookies from 'js-cookie'
 
 
 let loading = null
