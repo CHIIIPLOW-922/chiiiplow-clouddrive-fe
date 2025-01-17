@@ -57,9 +57,8 @@ const login = async () => {
   Object.assign(params, loginForm.value)
   params.showCaptcha = captchaStore.showCaptcha;
   params.captchaKey = captchaStore.captchaKey;
-  console.log(params)
   try {
-    const response = await userAPI.login(params);
+    await userAPI.login(params);
   } catch (error) {
     captchaStore.incrementFailedAttempts();
     refreshCaptcha();

@@ -1,6 +1,9 @@
 <template>
-  <DashboardLayouts>
-  </DashboardLayouts>
+  <div class="dashboard">
+    <DashboardLayouts>
+    </DashboardLayouts>
+
+  </div>
 </template>
 
 <script setup>

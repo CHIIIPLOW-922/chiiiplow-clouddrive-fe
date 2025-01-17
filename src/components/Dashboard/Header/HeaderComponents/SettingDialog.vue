@@ -9,7 +9,6 @@
                     <ThemeSwitch />
                 </el-form-item>
                 <el-form-item label="登出">
-                    <LogoutButton />
                 </el-form-item>
             </el-form>
 

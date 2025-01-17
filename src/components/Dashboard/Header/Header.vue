@@ -9,24 +9,14 @@
     <div class="header-avatar">
       <Avatar />
     </div>
-    <div class="setting-item">
-      <SettingButton @open-dialog="handleOpenDialog" />
-    </div>
-    <SettingDialog v-model="isDialogVisible" />
+    
   </div>
 </template>
 
 <script setup>
-import SettingButton from '@/components/Dashboard/Header/HeaderComponents/SettingButton.vue';
 import Avatar from '@/components/Dashboard/Header/HeaderComponents/Avatar.vue';
-import SettingDialog from '@/components/Dashboard/Header/HeaderComponents/SettingDialog.vue';
 import SearchInput from '@/components/Dashboard/Header/HeaderComponents/SearchInput.vue';
 import LogoWrapper from '@/components/LogoWrapper.vue'
-import { ref } from 'vue';
-const isDialogVisible = ref(false);
-const handleOpenDialog = () => {
-  isDialogVisible.value = true;
-}
 </script>
 
 <style lang="scss">
@@ -59,13 +49,8 @@ const handleOpenDialog = () => {
     position: relative;
     // top: 18px;
     // right: 80px;
-    left: 1245px;
+    left: 1270px;
   }
 
-  .setting-item {
-    position: relative;
-    // top: 22px;
-    left: 1265px;
-  }
 }
 </style>

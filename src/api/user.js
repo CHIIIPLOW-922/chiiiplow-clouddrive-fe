@@ -5,7 +5,9 @@ const user = {
     emailCode: "user/sendEmailCode",
     registerAPI: "user/register",
     loginAPI: "user/login",
-    editProfile: "user/editProfile"
+    logoutAPI: "user/logout",
+    editProfile: "user/editProfile",
+    userInfo: "user/userInfo"
 };
 
 /**
@@ -42,8 +44,18 @@ const userAPI = {
 
     /*
      * Edit Profile 
-     *  */ 
+     *  */
     editProfile: (params) => RequestUtils.post(user.editProfile, params, {}),
+
+    /**
+     * User Sapce Info
+     */
+    userInfo: () => RequestUtils.post(user.userInfo, {}, {}),
+
+    /**
+     * Logout
+     */
+    logout: () => RequestUtils.post(user.logoutAPI, {}, { showLoading: true }),
 };
 
 export default userAPI;

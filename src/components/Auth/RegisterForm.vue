@@ -82,6 +82,7 @@ const register = async () => {
   const response = await userAPI.register(params);
   registerForm.value = {}
   emailCodeFlag.value = false
+  switchForm();
 }
 const switchForm = () => {
   toggleAuth();

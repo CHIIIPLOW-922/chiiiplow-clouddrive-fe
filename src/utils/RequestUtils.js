@@ -61,13 +61,14 @@ service.interceptors.response.use(
                 errorCallback(data.msg);
             }
             if (data.code == 401) {
-                let token = HttpClient.post("/user/refresh", {}, {});
-                console.log(token)
+                HttpClient.post("/user/refresh", {}, {});
             }
             if (data.code == 555) {
                 router.push("/auth?redirectUrl=" + encodeURI(router.currentRoute.value.path));
             }
-            MessageUtils.error(data.msg);
+            if (data.msg != null) {
+                MessageUtils.error(data.msg);
+            }
             return Promise.reject({ showError: true, msg: data.msg });
         }
     },
