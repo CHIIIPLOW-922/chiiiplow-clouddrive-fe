@@ -2,18 +2,17 @@
   <div class="aside">
     <div class="aside-menu">
       <Menu></Menu>
+      
     </div>
     <div class="aside-progress">
-      <Progress></Progress>
-    </div>
-    
+        <Progress></Progress>
+      </div>
   </div>
 </template>
 
 <script setup>
-import Menu from '@/components/Dashboard/Aside/AsideComponents/Menu.vue';
-import Progress from '@/components/Dashboard/Aside/AsideComponents/Progress.vue';
-
+import Menu from "@/components/Dashboard/Aside/AsideComponents/Menu.vue";
+import Progress from "@/components/Dashboard/Aside/AsideComponents/Progress.vue";
 </script>
 <style lang="scss">
 .aside {
@@ -24,14 +23,15 @@ import Progress from '@/components/Dashboard/Aside/AsideComponents/Progress.vue'
 
   .aside-menu {
     // overflow-y: auto;
-    height: 100%;
+    height: 90%;
+    
   }
   .aside-progress {
     width: 100%;
     padding: 0 20px;
-    position:relative;
+    position: relative;
     bottom: 50px;
   }
-
+  
 }
 </style>
