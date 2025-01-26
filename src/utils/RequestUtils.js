@@ -9,7 +9,6 @@ let loading = null
 const contentTypeForm = 'application/x-www-form-urlencoded;charset=UTF-8'
 const contentTypeJson = 'application/json'
 const responseTypeJson = "json"
-// const urlFilter = ['user/register', 'user/login', 'user/generateCaptcha', 'user/sendEmail']
 
 const service = axios.create({
     baseURL: '/api',
@@ -39,6 +38,7 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
     (response) => {
+        console.log(response.config)
         const { showLoading = true, errorCallback } = response.config;
         if (showLoading && loading) {
             loading.close()
@@ -60,10 +60,10 @@ service.interceptors.response.use(
             if (errorCallback) {
                 errorCallback(data.msg);
             }
+            // if (data.code == 401) {
+            //     HttpClient.post("/user/refresh", {}, {});
+            // }
             if (data.code == 401) {
-                HttpClient.post("/user/refresh", {}, {});
-            }
-            if (data.code == 555) {
                 router.push("/auth?redirectUrl=" + encodeURI(router.currentRoute.value.path));
             }
             if (data.msg != null) {
