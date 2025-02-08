@@ -17,6 +17,11 @@ const router = createRouter({
       path: "/auth",
       name: "登录及注册",
       component: () => import("@/pages/Auth/Auth.vue")
+    },
+    {
+      path: "/test",
+      name: "测试",
+      component: () => import("@/components/Test/Test.vue")
     }
   ]
 })

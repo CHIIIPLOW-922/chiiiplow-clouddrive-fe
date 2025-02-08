@@ -6,6 +6,9 @@
     <div class="header-search">
       <SearchInput />
     </div>
+    <div class="header-upload">
+      <UploadButton />
+    </div>
     <div class="header-avatar">
       <Avatar />
     </div>
@@ -16,7 +19,8 @@
 <script setup>
 import Avatar from '@/components/Dashboard/Header/HeaderComponents/Avatar.vue';
 import SearchInput from '@/components/Dashboard/Header/HeaderComponents/SearchInput.vue';
-import LogoWrapper from '@/components/LogoWrapper.vue'
+import LogoWrapper from '@/components/LogoWrapper.vue';
+import UploadButton from '@/components/Dashboard/Header/HeaderComponents/UploadButton.vue'
 </script>
 
 <style lang="scss">
@@ -43,6 +47,11 @@ import LogoWrapper from '@/components/LogoWrapper.vue'
     position: relative;
     // top: 25px;
     left: 50px;
+  }
+
+  .header-upload {
+    position: relative;
+    left: 120px;
   }
 
   .header-avatar {
