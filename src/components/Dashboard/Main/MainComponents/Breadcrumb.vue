@@ -1,16 +1,29 @@
 <template>
-  <el-breadcrumb class="breadcrumb" :separator-icon="ArrowRight">
-    <el-breadcrumb-item :to="{ path: '/' }">homepage</el-breadcrumb-item>
-    <el-breadcrumb-item
-      ><a href="/">promotion management</a></el-breadcrumb-item
-    >
-    <el-breadcrumb-item>promotion list</el-breadcrumb-item>
-    <el-breadcrumb-item>promotion detail</el-breadcrumb-item>
-  </el-breadcrumb>
+  <div class="breadcrumb">
+    <el-button  @click="click(0)" text :disabled="list.length === 0">全部文件</el-button>
+    <el-button v-for="(item, index) in list" :key="index" @click="click(item.id)" text :disabled="index === list.length - 1" >{{ item.fileName }}
+    </el-button>
+    <!-- 插入图标 -->
+    
+  </div>
 </template>
 
 <script setup>
-import { ArrowRight } from '@element-plus/icons-vue'
+import { ArrowRight, ArrowRightBold } from '@element-plus/icons-vue'
+import { fileInfoState } from '@/store/fileState';
+import { computed } from 'vue';
+const fileState = fileInfoState();
+const list = computed(()=> fileState.bcData);
+// const list = ref([])
+const click = async (args) => {
+  console.log(args)
+  let params = {
+    parentId: args
+  }
+  await fileState.updateQueryParams(params);
+  fileState.fetchBreadcrumb();
+  fileState.fetchFiles();
+}
 </script>
 
 <style lang="scss">

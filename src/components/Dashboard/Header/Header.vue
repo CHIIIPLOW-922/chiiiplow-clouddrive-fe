@@ -9,6 +9,9 @@
     <div class="header-upload">
       <UploadButton />
     </div>
+    <div class="header-folder">
+      <FolderButton />
+    </div>
     <div class="header-avatar">
       <Avatar />
     </div>
@@ -21,6 +24,7 @@ import Avatar from '@/components/Dashboard/Header/HeaderComponents/Avatar.vue';
 import SearchInput from '@/components/Dashboard/Header/HeaderComponents/SearchInput.vue';
 import LogoWrapper from '@/components/LogoWrapper.vue';
 import UploadButton from '@/components/Dashboard/Header/HeaderComponents/UploadButton.vue'
+import FolderButton from '@/components/Dashboard/Header/HeaderComponents/FolderButton.vue'
 </script>
 
 <style lang="scss">
@@ -54,11 +58,16 @@ import UploadButton from '@/components/Dashboard/Header/HeaderComponents/UploadB
     left: 120px;
   }
 
+  .header-folder {
+    position: relative;
+    left: 150px;
+  }
+
   .header-avatar {
     position: relative;
     // top: 18px;
     // right: 80px;
-    left: 1270px;
+    left: 1050px;
   }
 
 }

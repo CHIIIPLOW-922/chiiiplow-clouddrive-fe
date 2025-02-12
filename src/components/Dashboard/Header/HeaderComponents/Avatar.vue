@@ -6,10 +6,10 @@
          {{ username }}
         </el-form-item>
         <el-form-item label="用户昵称" class="user-popover-item">
-          {{ userNickname }}
+          {{ nickname }}
         </el-form-item>
         <el-form-item label="邮箱" class="user-popover-item">
-          {{ userEmail }}
+          {{ email }}
         </el-form-item>
         <el-form-item class="avatar-button-group" >
           <div class="setting-item">
@@ -22,8 +22,8 @@
       </el-form>
       <SettingDialog v-model="isDialogVisible" />
       <template #reference>
-        <img v-if="userAvatarPath.length == 0" class="user-avatar" src="@/assets/image/default_user_image.png" />
-        <img v-if="userAvatarPath.length > 0" class="user-avatar" :src="userAvatarPath">
+        <img v-if="avatarPath.length == 0" class="user-avatar" src="@/assets/image/default_user_image.png" />
+        <img v-if="avatarPath.length > 0" class="user-avatar" :src="avatarPath">
       </template>
     </el-popover>
 
@@ -32,35 +32,30 @@
 </template>
 
 <script setup>
-import { onMounted, ref, toRaw } from 'vue';
+import { computed, ref } from 'vue';
 import { userInfoStore } from '@/store/userState';
 import SettingDialog from '@/components/Dashboard/Header/HeaderComponents/SettingDialog.vue';
 import SettingButton from '@/components/Dashboard/Header/HeaderComponents/SettingButton.vue';
 import LogoutButton from '@/components/Dashboard/Header/HeaderComponents/LogoutButton.vue';
 const userStore = userInfoStore();
-const userAvatarPath = ref('');
-const username = ref('');
-const userNickname = ref('');
-const userEmail = ref('');
 const isDialogVisible = ref(false);
+const username = computed(()=> userStore.username);
+const email = computed(()=> userStore.email);
+const nickname = computed(()=> userStore.nickname);
+const avatarPath = computed(()=> userStore.avatarPath);
 
 
 const handleOpenDialog = () => {
   isDialogVisible.value = true;
 }
-
-const getUserInfo = async () => {
-  await userStore.loadUserData();
-  let res = toRaw(userStore.userData);
-  userAvatarPath.value = res.avatarPath == null ? '' : res.avatarPath;
-  username.value = res.username;
-  userNickname.value = res.nickname;
-  userEmail.value = res.email;
-}
-
-onMounted(() => {
-  getUserInfo();
-})
+// const getUserInfo = async () => {
+//   await userStore.loadUserData();
+//   let res = toRaw(userStore.userData);
+//   userAvatarPath.value = res.avatarPath == null ? '' : res.avatarPath;
+//   username.value = res.username;
+//   userNickname.value = res.nickname;
+//   userEmail.value = res.email;
+// }
 </script>
 
 <style lang="scss">

@@ -20,7 +20,17 @@ import FileList from '@/components/Dashboard/Main/MainComponents/FileList.vue';
 import FileGrid from '@/components/Dashboard/Main/MainComponents/FileGrid.vue';
 import Breadcrumb from '@/components/Dashboard/Main/MainComponents/Breadcrumb.vue';
 import Pagination from '@/components/Dashboard/Main/MainComponents/Pagination.vue';
-
+import { fileInfoState } from '@/store/fileState';
+const fileState = fileInfoState();
+const fetchBreadcrumbs = async () => {
+  await fileState.fetchBreadcrumb();
+} 
+const fetchFileList = async ()=>{
+  await fileState.fetchFiles()
+  
+}
+fetchFileList();
+fetchBreadcrumbs();
 </script>
 
 <style lang="scss">
