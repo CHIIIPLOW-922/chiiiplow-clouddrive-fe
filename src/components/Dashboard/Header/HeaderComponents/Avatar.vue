@@ -22,8 +22,8 @@
       </el-form>
       <SettingDialog v-model="isDialogVisible" />
       <template #reference>
-        <img v-if="avatarPath.length == 0" class="user-avatar" src="@/assets/image/default_user_image.png" />
-        <img v-if="avatarPath.length > 0" class="user-avatar" :src="avatarPath">
+        <img v-if="avatarPath == null || avatarPath.length == 0" class="user-avatar" src="@/assets/image/default_user_image.png" />
+        <img v-if="avatarPath != null && avatarPath.length > 0" class="user-avatar" :src="avatarPath">
       </template>
     </el-popover>
 
@@ -32,11 +32,11 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
-import { userInfoStore } from '@/store/userState';
-import SettingDialog from '@/components/Dashboard/Header/HeaderComponents/SettingDialog.vue';
-import SettingButton from '@/components/Dashboard/Header/HeaderComponents/SettingButton.vue';
 import LogoutButton from '@/components/Dashboard/Header/HeaderComponents/LogoutButton.vue';
+import SettingButton from '@/components/Dashboard/Header/HeaderComponents/SettingButton.vue';
+import SettingDialog from '@/components/Dashboard/Header/HeaderComponents/SettingDialog.vue';
+import { userInfoStore } from '@/store/userState';
+import { computed, ref } from 'vue';
 const userStore = userInfoStore();
 const isDialogVisible = ref(false);
 const username = computed(()=> userStore.username);

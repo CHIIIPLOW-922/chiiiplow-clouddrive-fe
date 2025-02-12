@@ -13,11 +13,14 @@
 </template>
 
 <script setup>
-import { FolderAdd } from '@element-plus/icons-vue'
-import { ref } from 'vue';
+import { fileInfoState } from '@/store/fileState';
+import { FolderAdd } from '@element-plus/icons-vue';
+import { ref, toRaw } from 'vue';
+const fileState = fileInfoState();
 const FolderIcon = FolderAdd
 const folderDialogFlag = ref(false)
-const addFolder = () => {
+const addFolder = async () => {
+    let data = toRaw(fileState.fileData)
     folderDialogFlag.value = true; 
 }
 

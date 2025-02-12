@@ -7,8 +7,8 @@
 </template>
 
 <script setup>
-import Header from '@/components/Dashboard/Header/Header.vue';
 import Aside from '@/components/Dashboard/Aside/Aside.vue';
+import Header from '@/components/Dashboard/Header/Header.vue';
 import Main from '@/components/Dashboard/Main/Main.vue';
 </script>
 
@@ -19,7 +19,7 @@ import Main from '@/components/Dashboard/Main/Main.vue';
     "header header"
     "aside main";
   grid-template-columns: 250px 1fr;
-  grid-template-rows: 80px 1fr;
+  grid-template-rows: 80px minmax(0, 1fr);
   height: 100vh;
 }
 </style>
