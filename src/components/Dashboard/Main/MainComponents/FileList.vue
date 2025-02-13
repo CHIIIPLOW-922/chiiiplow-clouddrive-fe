@@ -1,5 +1,5 @@
 <template>
-  <el-table class="file-list" :data="filesData" @selection-change="selectValueChange" stripe height="837px" @row-click="click" empty-text="该文件夹下无文件，请添加">
+  <el-table class="file-list" :data="filesData" @selection-change="selectValueChange" stripe height="837px" @row-click="click" empty-text="暂无数据">
     <el-table-column type="selection" />
     <!-- <el-table-column prop="id" label="id" v-show="!1" /> -->
     <el-table-column prop="fileName" label="文件名">

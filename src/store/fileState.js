@@ -35,7 +35,7 @@ export const fileInfoState = defineStore('file', {
             this.fileData = res.data;
             this.total = res.data.length;
             this.current = 1;
-            this.bcData = [{fileName:"搜索\""+this.queryParams.search+"\" 共"+ this.total+"个文件"}]
+            this.bcData = [{fileName:"搜索 \""+this.queryParams.search+"\" 共"+ this.total+"个文件"}]
         },
         cleanFileInfo() {
             this.fileData = null;
