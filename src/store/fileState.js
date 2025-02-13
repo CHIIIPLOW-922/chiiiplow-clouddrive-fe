@@ -7,9 +7,10 @@ export const fileInfoState = defineStore('file', {
         bcData: null,
         queryParams: {
             pageNo: 1,
-            pageSize: 10,
+            pageSize: 30,
             fileTypeName: null,
-            parentId: null
+            parentId: null,
+            search:''
         },
         total: 0,
         current: 1
@@ -28,6 +29,13 @@ export const fileInfoState = defineStore('file', {
         async fetchBreadcrumb() {
             let res = await fileAPI.breadcrumb(this.queryParams);
             this.bcData = res.data;
+        },
+        async fetchSearchFiles() {
+            let res = await fileAPI.search(this.queryParams);
+            this.fileData = res.data;
+            this.total = res.data.length;
+            this.current = 1;
+            this.bcData = [{fileName:"搜索\""+this.queryParams.search+"\" 共"+ this.total+"个文件"}]
         },
         cleanFileInfo() {
             this.fileData = null;

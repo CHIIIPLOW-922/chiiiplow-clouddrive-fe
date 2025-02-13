@@ -16,7 +16,7 @@ import { computed, ref } from 'vue';
 const fileState = fileInfoState();
 const currentPage = computed(()=> fileState.current);
 const total = computed(()=> fileState.total);
-const pageSize = ref(10);
+const pageSize = ref(30);
 
 const handleCurrentChange = async (args) => {
   let params = {

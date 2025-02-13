@@ -78,9 +78,10 @@ fetchBreadcrumbs();
   .main-pagination {
     display: flex;
     justify-content: center;
-    padding-bottom: 25px;
+    padding-bottom: 40px;
     align-items: center;
     z-index: 10;
+    margin-top: 20px;
     // margin: 10px 0 10px 100px;
   }
 }
