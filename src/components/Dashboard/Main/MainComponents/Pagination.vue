@@ -1,5 +1,6 @@
 <template>
   <el-pagination
+      class="pagination"
       v-model:current-page="currentPage"
       v-model:page-size="pageSize"
       :page-sizes="[10, 30, 50, 100]"
@@ -41,5 +42,7 @@ const handleSizeChange = async (args) => {
 </script>
 
 <style lang="scss">
-
+.pagination{
+  height: 50px;
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <el-table class="file-list" :data="filesData" @selection-change="selectValueChange" stripe height="837px"
+  <el-table class="file-list" :data="filesData" @selection-change="selectValueChange" stripe height="100%" min-height="100px"
     empty-text="暂无数据">
     <el-table-column type="selection" />
     <!-- <el-table-column prop="id" label="id" v-show="!1" /> -->
@@ -48,9 +48,9 @@
 </template>
 
 <script setup>
+import fileAPI from '@/api/file';
 import { fileInfoState } from '@/store/fileState';
 import { computed, toRaw } from 'vue';
-import fileAPI from '@/api/file';
 const fileState = fileInfoState();
 const filesData = computed(() => fileState.fileData)
 

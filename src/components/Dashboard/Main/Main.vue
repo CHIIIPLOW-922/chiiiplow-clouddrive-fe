@@ -33,56 +33,52 @@ fetchBreadcrumbs();
 </script>
 
 <style lang="scss">
-// .main{
-//   display: grid;
-//   grid-template-rows: auto 1fr auto; // 头-内容-分页
-//   height: 100%;
-  
-//   // overflow-y: auto;
-//   // border: 1px solid black;
-//   .main-breadcrumb {
-//     // margin: 10px 0 10px 5px;
-
-//   }
-//   .main-file-list{
-//     max-height: calc(100vh - 80px - 60px);
-//     // padding-top: 10px;
-//     // height: 60%;
-//     // overflow-y: auto;
-//   }
-//   .main-pagination{
-//     display: flex;
-//     justify-content: center;
-//     padding-top: 25px;
-//     align-items: center;
-//     // margin: 10px 0 10px 100px;
-//   }
-// }
-.main {
-  grid-area: main;
-  display: flex;
-  flex-direction: column;
-  // height: 100%;
-  overflow: hidden; // 外层容器限制溢出
-
+.main{
+  display: grid;
+  grid-template-rows: 35px 1fr 71px; // 头-内容-分页
+  height: 1fr;
   .main-breadcrumb {
-    flex-shrink: 0; // 禁止收缩
   }
-
-  .main-file-list {
-    flex: 1 1 auto;
-    min-height: 0;
-    // overflow-y: auto;
+  .main-file-list{
+    // max-height: calc(1fr - 80px - 60px);
+    // padding-top: 10px;
+    // height: 60%;
+    overflow-y: hidden;
   }
-
-  .main-pagination {
+  .main-pagination{
+    // border-top: 1px solid var(--el-border-color);
     display: flex;
     justify-content: center;
-    padding-bottom: 30px;
+    // padding-top: 25px;
     align-items: center;
-    z-index: 10;
-    margin-top: 20px;
     // margin: 10px 0 10px 100px;
   }
 }
+// .main {
+//   grid-area: main;
+//   display: flex;
+//   flex-direction: column;
+//   // height: 100%;
+//   // overflow: hidden; // 外层容器限制溢出
+
+//   .main-breadcrumb {
+//     flex-shrink: 0; // 禁止收缩
+//   }
+
+//   .main-file-list {
+//     flex: 1 1 auto;
+//     min-height: 0;
+//     // overflow-y: auto;
+//   }
+
+//   .main-pagination {
+//     display: flex;
+//     justify-content: center;
+//     padding-bottom: 10px;
+//     align-items: center;
+//     z-index: 10;
+//     // margin-top: 20px;
+//     // margin: 10px 0 10px 100px;
+//   }
+// }
 </style>
