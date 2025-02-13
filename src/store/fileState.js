@@ -3,14 +3,14 @@ import { defineStore } from 'pinia';
 
 export const fileInfoState = defineStore('file', {
     state: () => ({
-        fileData: null,
-        bcData: null,
+        fileData: [],
+        bcData: [],
         queryParams: {
             pageNo: 1,
             pageSize: 30,
             fileTypeName: null,
             parentId: null,
-            search:''
+            search: ''
         },
         total: 0,
         current: 1
@@ -19,6 +19,24 @@ export const fileInfoState = defineStore('file', {
     actions: {
         updateQueryParams(newParams) {
             this.queryParams = { ...this.queryParams, ...newParams };
+        },
+        editFolder(rows) {
+            let target = this.fileData.find(item => item.id == rows.id);
+            if (target) {
+                target.isEditing = 1;
+                target.folderName = target.fileName
+            }
+        },
+        newFolder() {
+            let index = this.fileData.findIndex(item => item.id == null)
+            if (index == -1) {
+                this.fileData.unshift({ id: null, fileName: '', isEditing: 1 })
+            }
+        },
+        cancelFolder() {
+            let index = this.fileData.findIndex(item => item.id == null)
+            if (index == -1) return;
+            this.fileData.splice(index, 1);
         },
         async fetchFiles() {
             let res = await fileAPI.pages(this.queryParams);
@@ -35,7 +53,7 @@ export const fileInfoState = defineStore('file', {
             this.fileData = res.data;
             this.total = res.data.length;
             this.current = 1;
-            this.bcData = [{fileName:"搜索 \""+this.queryParams.search+"\" 共"+ this.total+"个文件"}]
+            this.bcData = [{ fileName: "搜索 \"" + this.queryParams.search + "\" 共" + this.total + "个文件", folderFlag: false }]
         },
         cleanFileInfo() {
             this.fileData = null;

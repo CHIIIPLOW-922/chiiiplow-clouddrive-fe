@@ -78,7 +78,7 @@ fetchBreadcrumbs();
   .main-pagination {
     display: flex;
     justify-content: center;
-    padding-bottom: 40px;
+    padding-bottom: 30px;
     align-items: center;
     z-index: 10;
     margin-top: 20px;
