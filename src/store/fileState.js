@@ -33,10 +33,21 @@ export const fileInfoState = defineStore('file', {
                 this.fileData.unshift({ id: null, fileName: '', isEditing: 1 })
             }
         },
-        cancelFolder() {
-            let index = this.fileData.findIndex(item => item.id == null)
-            if (index == -1) return;
-            this.fileData.splice(index, 1);
+        cancelFolder(params) {
+            console.log(params)
+            if (params.id == null) {
+                let index = this.fileData.findIndex(item => item.id == null)
+                if (index == -1) return;
+                this.fileData.splice(index, 1);
+            }
+            else {
+                let target = this.fileData.find(item => item.id == params.id);
+                if (target) {
+                    target.isEditing = 0;
+                }
+            }
+
+
         },
         async fetchFiles() {
             let res = await fileAPI.pages(this.queryParams);

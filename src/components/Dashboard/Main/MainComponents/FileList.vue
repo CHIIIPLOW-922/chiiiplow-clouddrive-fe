@@ -13,7 +13,7 @@
           <img class="file-icon" v-if="scope.row.fileType == 5" src="@/assets/image/file-icon/zip-file.png" alt="">
           <img class="file-icon" v-if="scope.row.fileType == 6" src="@/assets/image/file-icon/unknown-mail.png" alt="">
 
-          <el-input v-if="scope.row.isEditing != null" v-model.trim="scope.row.folderName"></el-input>
+          <el-input v-if="scope.row.isEditing == 1" v-model.trim="scope.row.folderName"></el-input>
           <div v-else>{{ scope.row.fileName }}</div>
         </div>
       </template>
@@ -32,15 +32,15 @@
     <el-table-column prop="modifyTime" label="修改时间" />
     <el-table-column fixed="right" label="Operations" min-width="80">
       <template v-slot="scope">
-        <el-button v-if="scope.row.isEditing != null" link type="primary" size="small"
+        <el-button v-if="scope.row.isEditing == 1" link type="primary" size="small"
           @click="save(scope.row)">Save</el-button>
-        <el-button v-if="scope.row.isEditing != null" link type="primary" size="small"
+        <el-button v-if="scope.row.isEditing == 1" link type="primary" size="small"
           @click="cancel(scope.row)">Cancel</el-button>
-        <el-button v-if="scope.row.isEditing == null" link type="primary" size="small"
+        <el-button v-if="scope.row.isEditing == 0 || scope.row.isEditing == null" link type="primary" size="small"
           @click="select(scope.row)">Select</el-button>
-        <el-button v-if="scope.row.isEditing == null" link type="primary" size="small"
+        <el-button v-if="scope.row.isEditing == 0 || scope.row.isEditing == null" link type="primary" size="small"
           @click="edit(scope.row)">Edit</el-button>
-        <el-button v-if="scope.row.isEditing == null" link type="danger" size="small"
+        <el-button v-if="scope.row.isEditing == 0 || scope.row.isEditing == null" link type="danger" size="small"
           @click="deleteFile(scope.row)">Delete</el-button>
       </template>
     </el-table-column>
@@ -83,8 +83,10 @@ const select = async (rows) => {
   fileState.fetchFiles();
   fileState.fetchBreadcrumb();
 }
-const cancel = async () => {
-  await fileState.cancelFolder();
+const cancel = async (rows) => {
+  let params = {}
+  Object.assign(params, rows)
+  await fileState.cancelFolder(params);
 }
 const selectValueChange = (rows) => {
   let params = []
