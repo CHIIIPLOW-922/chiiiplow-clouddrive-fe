@@ -1,6 +1,6 @@
 <template>
     <div class="folder-button">
-        <el-button class="el-folder-button" :icon="FolderIcon" round @click="newFolder">New Folder
+        <el-button class="el-folder-button" :icon="FolderIcon" round @click="newFolder" :disabled="fileState.searchFlag">New Folder
         </el-button>
     </div>
 </template>
