@@ -64,6 +64,7 @@ service.interceptors.response.use(
             //     HttpClient.post("/user/refresh", {}, {});
             // }
             if (data.code == 401) {
+                localStorage.clear("access_token");
                 router.push("/auth?redirectUrl=" + encodeURI(router.currentRoute.value.path));
             }
             if (data.msg != null) {

@@ -37,8 +37,6 @@ fetchBreadcrumbs();
   display: grid;
   grid-template-rows: 35px 1fr 71px; // 头-内容-分页
   height: 1fr;
-  .main-breadcrumb {
-  }
   .main-file-list{
     // max-height: calc(1fr - 80px - 60px);
     // padding-top: 10px;

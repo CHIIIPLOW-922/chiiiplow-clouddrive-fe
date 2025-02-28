@@ -25,7 +25,7 @@ export const fileInfoState = defineStore('file', {
             let target = this.fileData.find(item => item.id == rows.id);
             if (target) {
                 target.isEditing = 1;
-                target.folderName = target.fileName
+                target.folderName = target.fileName;
             }
         },
         newFolder() {
