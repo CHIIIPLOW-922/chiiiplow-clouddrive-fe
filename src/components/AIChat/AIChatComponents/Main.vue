@@ -17,9 +17,13 @@ import ChatInput from '@/components/AIChat/AIChatComponents/Main/ChatInput.vue';
 <style lang="scss">
 .chat-main {
     display: grid;
-    height: 100%;
+    height: 1fr;
     grid-template-rows: 1fr 200px;
-    background-color: var(--el-bg-color);
+    background-color: var(--el-bg-color-overlay);
+    .history-item {
+      height: 100%;
+      overflow-y: hidden;
+    }
 }
 
 </style>
