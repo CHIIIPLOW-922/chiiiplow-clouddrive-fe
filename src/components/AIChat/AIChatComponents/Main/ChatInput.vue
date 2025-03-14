@@ -3,11 +3,11 @@
     <div class="dialog-padding">
       <div class="dialog">
         <div class="input-item">
-          <el-input type="textarea" v-model="question" placeholder="询问任何问题..." ref="textarea" @keydown.enter.exact.prevent="handleSend"></el-input>
+          <el-input type="textarea" v-model="question" placeholder="询问任何问题..." ref="textarea" @input="adjustHeight"  @keydown.enter.exact.prevent="handleSend"></el-input>
         </div>
         <div class="button-item">
           <div class="button-padding"></div>
-          <el-button class="send-button" round :icon="ArrowUpBold" @click="handleSend" size="large"
+          <el-button class="send-button" round :icon="ArrowUpBold" @click="handleSend" size="large" :disabled="!question.trim()"
             ></el-button>
         </div>
       </div>
@@ -17,11 +17,28 @@
 
 <script setup>
 import { ArrowUpBold } from '@element-plus/icons-vue';
-import { ref } from "vue";
+import { nextTick, ref } from "vue";
 const question = ref("");
+const textarea = ref(null);
+const emit = defineEmits(["update-height"]);
+
 const handleSend = () => {
-  console.log(question.value)
-}
+  if (!question.value.trim()) return;
+  
+  console.log(question.value);
+  question.value = "";
+  adjustHeight();
+};
+
+
+const adjustHeight = () => {
+  nextTick(() => {
+    if (textarea.value) {
+      const scrollHeight = textarea.value.$el.querySelector('textarea').scrollHeight - 125;
+      emit("update-height", Math.min(scrollHeight, 400)); 
+    }
+  });
+};
 </script>
 
 <style lang="scss">
@@ -42,15 +59,8 @@ const handleSend = () => {
       display: grid;
       min-width: 400px;
       grid-template-rows: 1fr auto;
-      // &:hover {
-      //   box-shadow: -2px 4px 8px var(--el-border-color);
-      // }
-      // &:focus-within {
-      //   box-shadow: -2px 2px 4px var(--el-color-primary);
-      // }
-      
       .input-item {
-        padding: 10px 50px 10px 20px;
+        padding: 0px 0px 5px 0px;
 
         .el-textarea {
           height: 100%;
@@ -76,7 +86,7 @@ const handleSend = () => {
         }
 
         textarea {
-          font-size: 16px;
+          font-size: 15px;
           padding: 0px;
           background-color: var(--el-border-color);
           resize: none;
@@ -86,7 +96,7 @@ const handleSend = () => {
         }
 
         textarea::-webkit-scrollbar {
-          width: 10px;
+          width: 8px;
         }
 
         textarea::-webkit-scrollbar-track {
@@ -107,9 +117,10 @@ const handleSend = () => {
 
         .send-button {
           background: var(--el-menu-text-color);
-          // margin-right: 15px;
-          width: 45px;
-          height: 45px;
+          // margin-right: 5px;
+          // margin-bottom: 5px;
+          width: 40px;
+          height: 40px;
           border-radius: 50%;
           .el-icon {
             color: var(--el-bg-color-overlay);
