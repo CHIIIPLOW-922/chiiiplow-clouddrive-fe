@@ -34,7 +34,7 @@ const handleSend = () => {
 const adjustHeight = () => {
   nextTick(() => {
     if (textarea.value) {
-      const scrollHeight = textarea.value.$el.querySelector('textarea').scrollHeight - 125;
+      const scrollHeight = textarea.value.$el.querySelector('textarea').scrollHeight - 175;
       emit("update-height", Math.min(scrollHeight, 400)); 
     }
   });
@@ -48,7 +48,7 @@ const adjustHeight = () => {
 
   .dialog-padding {
     background: transparent;
-    padding: 0px 400px 20px 400px;
+    padding: 0px 400px 15px 400px;
     height: 100%;
 
     .dialog {
@@ -86,7 +86,7 @@ const adjustHeight = () => {
         }
 
         textarea {
-          font-size: 15px;
+          font-size: 1rem;
           padding: 0px;
           background-color: var(--el-border-color);
           resize: none;
@@ -96,7 +96,7 @@ const adjustHeight = () => {
         }
 
         textarea::-webkit-scrollbar {
-          width: 8px;
+          width: 7px;
         }
 
         textarea::-webkit-scrollbar-track {
