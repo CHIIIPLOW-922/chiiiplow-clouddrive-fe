@@ -8,8 +8,6 @@
                 <el-form-item label="主题模式">
                     <ThemeSwitch />
                 </el-form-item>
-                <el-form-item label="登出">
-                </el-form-item>
             </el-form>
 
         </div>

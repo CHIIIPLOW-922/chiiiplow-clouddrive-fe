@@ -13,10 +13,10 @@
 import ChatHistory from '@/components/AIChat/AIChatComponents/Main/ChatHistory.vue';
 import ChatInput from '@/components/AIChat/AIChatComponents/Main/ChatInput.vue';
 import { ref } from 'vue';
-const inputHeight = ref(150); // 初始输入框高度
+const inputHeight = ref(175); // 初始输入框高度
 
 const updateInputHeight = (height) => {
-  inputHeight.value = Math.max(150, Math.min(height, 400)); // 限制最大高度
+  inputHeight.value = Math.max(175, Math.min(height, 400)); // 限制最大高度
 };
 </script>
 

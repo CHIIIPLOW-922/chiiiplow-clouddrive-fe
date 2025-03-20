@@ -24,18 +24,18 @@ const emit = defineEmits(["update-height"]);
 
 const handleSend = () => {
   if (!question.value.trim()) return;
-  
+  const newValue = question.value.replace(/[\s\r\n]+/g, '');
+  console.log(newValue);
   console.log(question.value);
   question.value = "";
   adjustHeight();
 };
 
-
 const adjustHeight = () => {
   nextTick(() => {
     if (textarea.value) {
-      const scrollHeight = textarea.value.$el.querySelector('textarea').scrollHeight - 175;
-      emit("update-height", Math.min(scrollHeight, 400)); 
+      const scrollHeight = textarea.value.$el.querySelector('textarea').scrollHeight - 150;
+      emit("update-height", Math.min(scrollHeight, 400));
     }
   });
 };
@@ -48,7 +48,7 @@ const adjustHeight = () => {
 
   .dialog-padding {
     background: transparent;
-    padding: 0px 400px 15px 400px;
+    padding: 0px 400px 30px 400px;
     height: 100%;
 
     .dialog {
@@ -59,6 +59,7 @@ const adjustHeight = () => {
       display: grid;
       min-width: 400px;
       grid-template-rows: 1fr auto;
+
       .input-item {
         padding: 0px 0px 5px 0px;
 
@@ -122,6 +123,7 @@ const adjustHeight = () => {
           width: 40px;
           height: 40px;
           border-radius: 50%;
+
           .el-icon {
             color: var(--el-bg-color-overlay);
           }
