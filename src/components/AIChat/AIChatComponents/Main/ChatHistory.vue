@@ -108,7 +108,7 @@ const handleScroll = () => {
   overflow-y: scroll;
   overflow-x: hidden;
   color: var(--el-menu-text-color);
-  transition: all 1s ease-in-out;
+  transition: background-color 1s ease-in-out;
 
   // 默认滚动条隐藏 
   &.show-scrollbar::-webkit-scrollbar-thumb {

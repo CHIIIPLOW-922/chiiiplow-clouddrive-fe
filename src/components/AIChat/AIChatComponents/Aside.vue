@@ -136,7 +136,9 @@ const chatList = ref([
 <style lang="scss" scoped>
 .chat-aside {
     border-right: 1px solid var(--el-border-color);
+    padding-top: 15px;
     padding-bottom: 20px;
+    padding-left: 5px;
     display: flex;
     flex-direction: column; // 垂直排列
     overflow-y: scroll;
@@ -161,15 +163,20 @@ const chatList = ref([
     }
 
     .chat-button {
-        margin: 10px 20px;
+        margin: 2px 5px;
         height: 40px;
-        font-size: 16px;
+        font-size: 18px;
+        color: var(--el-text-color-regular);
         border-radius: 8px;
     }
 
     /* 选中状态的按钮 */
     .active-button {
-        background-color: var(--el-button-bg-color);
+        background-color: var(--el-border-color-light);
+    }
+
+    .active-button:hover {
+        background-color: var(--el-border-color-light);
     }
 }
 </style>
