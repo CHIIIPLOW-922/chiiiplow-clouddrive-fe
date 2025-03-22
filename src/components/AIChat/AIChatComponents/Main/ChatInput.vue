@@ -3,12 +3,25 @@
     <div class="dialog-padding">
       <div class="dialog">
         <div class="input-item">
-          <el-input type="textarea" v-model="question" placeholder="询问任何问题..." ref="textarea" @input="adjustHeight"  @keydown.enter.exact.prevent="handleSend"></el-input>
+          <el-input
+            type="textarea"
+            v-model="question"
+            placeholder="询问任何问题..."
+            ref="textarea"
+            @input="adjustHeight"
+            @keydown.enter.exact.prevent="handleSend"
+          ></el-input>
         </div>
         <div class="button-item">
           <div class="button-padding"></div>
-          <el-button class="send-button" round :icon="ArrowUpBold" @click="handleSend" size="large" :disabled="!question.trim()"
-            ></el-button>
+          <el-button
+            class="send-button"
+            round
+            :icon="ArrowUpBold"
+            @click="handleSend"
+            size="large"
+            :disabled="!question.trim()"
+          ></el-button>
         </div>
       </div>
     </div>
@@ -59,7 +72,13 @@ const adjustHeight = () => {
       display: grid;
       min-width: 400px;
       grid-template-rows: 1fr auto;
-
+      transition: box-shadow 0.4s ease-in-out;
+        box-shadow: 0 0 0 transparent;
+      &:hover,
+      &:focus-within {
+        transition: box-shadow 0.4s ease-in-out;
+        box-shadow: 0 4px 15px var(--el-border-color);
+      }
       .input-item {
         padding: 0px 0px 5px 0px;
 

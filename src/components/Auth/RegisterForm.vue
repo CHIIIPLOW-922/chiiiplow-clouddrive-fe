@@ -41,9 +41,9 @@
 </template>
 
 <script setup>
-import { Box, Lock, ScaleToOriginal, User, Message } from '@element-plus/icons-vue'
 import userAPI from '@/api/user';
 import { toggleAuth } from '@/store/authState';
+import { Box, Lock, Message, ScaleToOriginal, User } from '@element-plus/icons-vue';
 import { getCurrentInstance, ref } from 'vue';
 const { proxy } = getCurrentInstance()
 const sendEmailStatus = ref('发送验证码')
@@ -92,10 +92,16 @@ const switchForm = () => {
 <style lang="scss">
 .register-form {
   border: 1px solid var(--el-border-color);
-  box-shadow: 0 2px 10px var(--el-border-color);
   border-radius: 8px;
   width: 500px;
   padding: 10px 15px;
+  box-shadow: 0 0 0 transparent;
+  transition: box-shadow 0.4s ease-in-out;
+  &:hover,
+  &:focus-within {
+    transition: box-shadow 0.4s ease-in-out;
+    box-shadow: 0 4px 15px var(--el-border-color);
+  }
 
   .title-wrapper {
     display: flex;
