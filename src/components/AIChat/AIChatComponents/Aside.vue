@@ -1,14 +1,24 @@
 <template>
-    <div class="chat-aside" ref="scrollContainer" @scroll="handleScroll"
-        :class="{ 'show-scrollbar': scrollbarVisible }">
-        <el-button v-for="item in chatList" :key="item.id" class="chat-button" text type="primary" size="large"
-            :class="{ 'active-button': activeChatId === item.id }" @click="activeChat(item)">{{ item.name }}</el-button>
+    <div class="ai-aside">
+        <div class="chat-new">
+            <el-button class="chat-new-btn" type="primary" text size="large">
+                <el-icon class="chat-new-icon" size="large"><Comment /></el-icon>
+                开启新对话
+            </el-button>
+        </div>
+        <div class="chat-aside" ref="scrollContainer" @scroll="handleScroll"
+            :class="{ 'show-scrollbar': scrollbarVisible }">
+            <el-button v-for="item in chatList" :key="item.id" class="chat-button" text type="primary" size="large"
+                :class="{ 'active-button': activeChatId === item.id }" @click="activeChat(item)">{{ item.name
+                }}</el-button>
+        </div>
     </div>
+
 </template>
 
 <script setup>
 import { ref } from 'vue';
-
+import { Comment } from '@element-plus/icons-vue';
 const scrollContainer = ref(null)
 let hideTimeout = null;
 const activeChatId = ref(null);
@@ -134,49 +144,72 @@ const chatList = ref([
 </script>
 
 <style lang="scss" scoped>
-.chat-aside {
+.ai-aside {
+    display: grid;
+    grid-template-rows: 50px 1fr;
     border-right: 1px solid var(--el-border-color);
-    padding-top: 15px;
-    padding-bottom: 20px;
-    padding-left: 5px;
-    display: flex;
-    flex-direction: column; // 垂直排列
-    overflow-y: scroll;
-    
 
-    // 默认滚动条隐藏 
-    &.show-scrollbar::-webkit-scrollbar-thumb {
-        background-color: var(--el-border-color);
-        transition: background-color 1s ease-in;
+    .chat-new {
+        // width: 100%;
+        // height: 60px;
+        // margin-bottom: 20px;
+
+        .chat-new-btn {
+            width: 100%;
+            height: 50px;
+            .chat-new-icon{ 
+                width: 40px;
+                height: 40px;
+            }
+        }
     }
 
+    // overflow-y: scroll;
+    .chat-aside {
+        // padding-top: 15px;
+        // padding-bottom: 20px;
+        padding-left: 5px;
+        margin-top: 5px;
+        margin-bottom: 25px;
+        display: flex;
+        flex-direction: column; // 垂直排列
+        overflow-y: scroll;
 
-    &::-webkit-scrollbar-thumb {
-        background-color: transparent;
-        transition: background-color 1s ease-out;
-        width: 5px;
-        border-radius: 8px;
-    }
 
-    &::-webkit-scrollbar-track {
-        background-color: transparent;
-    }
+        // 默认滚动条隐藏 
+        &.show-scrollbar::-webkit-scrollbar-thumb {
+            background-color: var(--el-border-color);
+            transition: background-color 1s ease-in;
+        }
 
-    .chat-button {
-        margin: 2px 5px;
-        height: 40px;
-        font-size: 18px;
-        color: var(--el-text-color-regular);
-        border-radius: 8px;
-    }
 
-    /* 选中状态的按钮 */
-    .active-button {
-        background-color: var(--el-border-color-light);
-    }
+        &::-webkit-scrollbar-thumb {
+            background-color: transparent;
+            transition: background-color 1s ease-out;
+            width: 5px;
+            border-radius: 8px;
+        }
 
-    .active-button:hover {
-        background-color: var(--el-border-color-light);
+        &::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        .chat-button {
+            margin: 2px 5px;
+            height: 40px;
+            font-size: 18px;
+            color: var(--el-text-color-regular);
+            border-radius: 8px;
+        }
+
+        /* 选中状态的按钮 */
+        .active-button {
+            background-color: var(--el-border-color-light);
+        }
+
+        .active-button:hover {
+            background-color: var(--el-border-color-light);
+        }
     }
 }
 </style>
