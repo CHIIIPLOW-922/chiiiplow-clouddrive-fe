@@ -5,15 +5,15 @@ import { resolve } from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [vue()],
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://192.168.194.52:30080/clouddrive',
-        changeOrigin: true, // 修改请求头的 Host 为目标服务器的 URL
-        rewrite: (path) => path.replace(/^\/api/, '')
-      }
-    }
-  },
+  // server: {
+  //   proxy: {
+  //     '/api': {
+  //       target: 'http://192.168.194.52:30080/clouddrive',
+  //       changeOrigin: true, // 修改请求头的 Host 为目标服务器的 URL
+  //       rewrite: (path) => path.replace(/^\/api/, '')
+  //     }
+  //   }
+  // },
   resolve: {
     alias: {
       '@': resolve('src')
