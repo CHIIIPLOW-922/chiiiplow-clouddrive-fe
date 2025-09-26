@@ -6,8 +6,6 @@ import { resolve } from 'path'
 export default defineConfig({
   plugins: [vue()],
   server: {
-    port: 8999,
-    hmr: true,
     proxy: {
       '/api': {
         target: 'http://192.168.194.52:30080/clouddrive',

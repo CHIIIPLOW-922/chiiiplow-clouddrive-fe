@@ -12,7 +12,7 @@ const contentTypeJson = 'application/json'
 const responseTypeJson = "json"
 
 const service = axios.create({
-    baseURL: '/api',
+    baseURL: import.meta.env.VITE_API_BASE_URL,
     timeout: 50 * 1000
 });
 
