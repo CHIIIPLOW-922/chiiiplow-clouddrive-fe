@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: clouddrive-fe
+spec:
+  selector:
+    app: clouddrive-fe
+  ports:
+    - protocol: TCP
+      name: http
+      port: 80       # Service 内部端口
+      targetPort: 80 # Pod 内部应用端口
+      nodePort: 30090  # 外部访问端口（浏览器访问 http://nodeIP:30080）
+  type: NodePort

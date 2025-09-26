@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clouddrive-fe
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clouddrive-fe
+  template:
+    metadata:
+      labels:
+        app: clouddrive-fe
+    spec:
+      containers:
+        - name: clouddrive-fe
+          image: chiiiplow/clouddrive-fe:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
