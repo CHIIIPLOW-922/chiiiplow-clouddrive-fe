@@ -1,4 +1,5 @@
 import RequestUtils from '@/utils/RequestUtils';
+import CryptoJS from 'crypto-js';
 
 const user = {
     captcha: "user/sendCaptcha",
@@ -33,14 +34,21 @@ const userAPI = {
      * @param {Object} params - Parameters for the request
      * @returns {Promise<any>}
      */
-    register: (params) => RequestUtils.post(user.registerAPI, params, {}),
+    register: (params) => {
+        params.password = CryptoJS.SHA256(params.password).toString()
+        params.repassword = CryptoJS.SHA256(params.repassword).toString()
+        RequestUtils.post(user.registerAPI, params, {})
+    },
 
     /**
      * Login user
      * @param {Object} params - Parameters for the request
      * @returns {Promise<any>}
      */
-    login: (params) => RequestUtils.post(user.loginAPI, params, {}),
+    login: (params) => {
+        params.password = CryptoJS.SHA256(params.password).toString()
+        RequestUtils.post(user.loginAPI, params, {})
+    },
 
     /*
      * Edit Profile 

@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import MessageUtils from '@/utils/MessageUtils';
+import { waitForLoginFinish } from '@/utils/AuthUtils';
 
 const router = createRouter({
   mode: "hash",
@@ -40,15 +41,22 @@ const router = createRouter({
     }
   ]
 })
-router.beforeEach((to, from, next) => {
-  const userInfo = localStorage.getItem("access_token");
-  if (to.meta.needLogin != null && to.meta.needLogin && userInfo == null) {
+router.beforeEach(async(to, from, next) => {
+  await waitForLoginFinish()
+  const userInfo = localStorage.getItem("access_token")
+  // 用户未登录，访问需要登录的页面
+  if (to.meta.needLogin && !userInfo) {
     MessageUtils.error("用户未登录");
-    next('/auth');
+    return next('/auth');
   }
-  if (to.path == '/auth' && userInfo) {
-    router.push('dashboard');
+
+  // 已登录用户访问登录页，重定向到 dashboard
+  if (to.path === '/auth' && userInfo) {
+    return next('/dashboard'); // 或者 next({ name: 'Dashboard' })
   }
+
+  // 默认情况，正常跳转
   next();
-})
+});
+
 export default router

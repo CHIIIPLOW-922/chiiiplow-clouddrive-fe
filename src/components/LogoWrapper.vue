@@ -1,5 +1,5 @@
 <template>
-  <div class="global-logo">
+  <div class="global-logo" @click="goToDashboard">
     <img src="@/assets/image/logo.png" class="header-logo" />
       <div class="logo-title">
         <el-text size="large" tag="b">CHIIIPLOW-CLOUDDRIVE</el-text>
@@ -8,6 +8,12 @@
 </template>
 
 <script setup>
+import router from '@/router'
+const goToDashboard = () => {
+  let path = router.currentRoute._value.fullPath
+  if (path == '/dashboard') return;
+  router.push('/dashboard')
+}
 </script>
 
 <style lang="scss">

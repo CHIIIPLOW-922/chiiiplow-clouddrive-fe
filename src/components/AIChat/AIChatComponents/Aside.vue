@@ -170,7 +170,7 @@ const chatList = ref([
         // padding-bottom: 20px;
         padding-left: 5px;
         margin-top: 5px;
-        margin-bottom: 25px;
+        margin-bottom: 40px;
         display: flex;
         flex-direction: column; // 垂直排列
         overflow-y: scroll;

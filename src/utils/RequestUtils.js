@@ -3,6 +3,7 @@ import axios from 'axios';
 import MessageUtils from '@/utils/MessageUtils';
 import { ElLoading } from 'element-plus';
 import router from '@/router';
+import { setLoginFinished } from '@/utils/AuthUtils';
 
 
 let loading = null
@@ -46,6 +47,7 @@ service.interceptors.response.use(
         let accessToken = response.headers.getAuthorization()
         if (accessToken) {
             localStorage.setItem("access_token", accessToken);
+            setLoginFinished()
             
             // Cookies.set("access_token", `Bearer ${accessToken}`);
             // Cookies.set("refres_token", refreshToken);

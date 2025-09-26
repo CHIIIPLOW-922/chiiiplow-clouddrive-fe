@@ -10,7 +10,7 @@ export default defineConfig({
     hmr: true,
     proxy: {
       '/api': {
-        target: 'http://localhost:8080/clouddrive',
+        target: 'http://192.168.194.52:30080/clouddrive',
         changeOrigin: true, // 修改请求头的 Host 为目标服务器的 URL
         rewrite: (path) => path.replace(/^\/api/, '')
       }
